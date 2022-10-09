@@ -1,0 +1,21 @@
+[package]
+name = "no_alloc"
+version = "1.0.0"
+authors = ["Pierre Fenoll <pierrefenoll@gmail.com>"]
+edition = "2021"
+license = "MIT"
+description = "Procedural macro attribute on top of the assert_no_alloc crate."
+homepage = "https://github.com/fenollp/no-alloc"
+repository = "https://github.com/fenollp/no-alloc"
+readme = "README.md"
+keywords = ["allocator", "real-time", "debug", "audio"]
+categories = ["development-tools::debugging"]
+
+[dependencies]
+assert_no_alloc = { version = "1", features = ["warn_debug", "disable_release"] }
+proc-macro2 = "1"
+quote = "1"
+syn = { version = "1", features = ["full"] }
+
+[lib]
+proc-macro = true
