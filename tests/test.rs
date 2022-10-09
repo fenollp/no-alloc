@@ -5,12 +5,27 @@ fn do_alloc() {
     let _tmp: Box<u32> = Box::new(42);
 }
 
+// use trybuild
+
 #[test]
-#[no_alloc]
 fn fnfnfn() {
-    assert_no_alloc(|| {
-        do_alloc();
-    })
+    #[no_alloc]
+    {
+        assert_no_alloc(|| {
+            do_alloc();
+        })
+    }
+}
+
+#[test]
+fn fnfnfnfn() {
+    #[no_alloc]
+    let _tmp = assert_no_alloc(|| -> Box<u32> {
+        // ...
+        // ...    Imagine actual work here
+        // ...
+        Box::new(42)
+    });
 }
 
 #[test]
